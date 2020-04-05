@@ -4949,15 +4949,20 @@ int main(void) {
 		
 		// if(y0 == 0){reverse =1;}
 		// if(y1 == 239){reverse =-1;}
-		if(car_move_direction = -1 && car_x < 65){
-			car_move_direction = 0;
-		}
+		// if(car_move_direction = -1 && car_x < 40){
+		// 	car_move_direction = 0;
+		// }
 
-		if(car_move_direction = 1 && car_x > 225){
-			car_move_direction = 0;
-		}
+		// if(car_move_direction = 1 && car_x > 280){
+		// 	car_move_direction = 0;
+		// }
 
-		car_x += car_move_direction * 80;
+		if(car_x < 140 || car_x > 180){ //boundary conditions
+			car_move_direction = 0;
+		}else{
+			car_x = car_x + car_move_direction*80
+		}
+		
 	
 		byte3 = 0x76;
 
