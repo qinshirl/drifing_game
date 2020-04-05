@@ -4888,7 +4888,7 @@ int delta = 1;
 int delta2 = 1; 
 int maxX = 319; 
 int maxY = 239;
-int car_move_direction = 1;
+int car_move_direction = 0;
 
 int main(void) {
 
@@ -4913,8 +4913,9 @@ int main(void) {
 	
 	while (1) {
 
-		wait_for_vsync();
 		plot_image(car_x, car_y, car_pic, 30, 30);
+		wait_for_vsync();
+		plot_image(0, 0, bgpic_test2_pixel_map, 320, 240); 
 		PS2_data = *(PS2_ptr);	// read the Data register in the PS/2 port
 		RVALID = (PS2_data & 0x8000);	// extract the RVALID field
 		if (RVALID != 0)
@@ -4934,12 +4935,12 @@ int main(void) {
 		if(byte3 == 0x74)
 		{
 			*RLEDs = 0x1;
-			car_move_direction =1;
+			car_move_direction = 1;
 		}
 		if(byte3 == 0x6B)
 		{
 			*RLEDs = 0x2;
-			car_move_direction =-1;
+			car_move_direction = -1;
 		}
 		if(byte3 == 0x76)
 		{
@@ -4947,20 +4948,15 @@ int main(void) {
 			car_move_direction = 0;			
 		}
 		
-		// if(y0 == 0){reverse =1;}
-		// if(y1 == 239){reverse =-1;}
-		// if(car_move_direction = -1 && car_x < 40){
-		// 	car_move_direction = 0;
-		// }
 
-		// if(car_move_direction = 1 && car_x > 280){
-		// 	car_move_direction = 0;
-		// }
 
-		if(car_x < 140 || car_x > 180){ //boundary conditions
+		//boundary conditions 
+		if(car_x == 65 && car_move_direction == -1){ 
+			car_move_direction = 0;
+		}else if(car_x == 225 && car_move_direction == 1){
 			car_move_direction = 0;
 		}else{
-			car_x = car_x + car_move_direction*80
+			car_x = car_x + car_move_direction*80;
 		}
 		
 	
