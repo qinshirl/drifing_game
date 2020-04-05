@@ -4910,6 +4910,7 @@ int main(void) {
     int car_x = 145;
     int car_y = 175;
     
+
 	
 	while (1) {
 
@@ -4920,8 +4921,7 @@ int main(void) {
 		RVALID = (PS2_data & 0x8000);	// extract the RVALID field
 		if (RVALID != 0)
 		{
-			/* al
-			eceived */
+			
 			byte1 = byte2;
 			byte2 = byte3;
 			byte3 = PS2_data & 0xFF;
