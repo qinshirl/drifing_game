@@ -14855,6 +14855,7 @@ int main(void) {
     int increment_num = 1;
     int bomb_1_speed = 3;
     int bomb_2_speed = 5;
+    int line_move_speed = 60;
 
  //    PS2_data = *(PS2_ptr);	// read the Data register in the PS/2 port
 	// RVALID = (PS2_data & 0x8000);	// extract the RVALID field
@@ -14914,15 +14915,15 @@ int main(void) {
 				}
 			}
 
-			if(count_time%60 == 20){
+			if(count_time % line_move_speed == (line_move_speed / 3)){
 				plot_image(115, 0, line_2, 3, 240);
 				plot_image(197, 0, line_2, 3, 240);
 			}
-			if(count_time%60 == 40){
+			if(count_time % line_move_speed == (line_move_speed / 2)){
 				plot_image(115, 0, line_3, 3, 240);
 				plot_image(197, 0, line_3, 3, 240);
 			}
-			if(count_time%60 == 0){
+			if(count_time % line_move_speed == 0){
 				plot_image(115, 0, line_1, 3, 240);
 				plot_image(197, 0, line_1, 3, 240);
 			}
@@ -14936,6 +14937,7 @@ int main(void) {
 				//increment_num += 1;
 				bomb_1_speed += increment_num;
 				bomb_2_speed += (increment_num*2);
+				line_move_speed -= 10;
 			}
 
 			
