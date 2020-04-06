@@ -14852,7 +14852,7 @@ int main(void) {
 
     int count_time = 0;
     int count_drop = 1;
-    int increment_num = 2;
+    int increment_num = 1;
     int bomb_1_speed = 3;
     int bomb_2_speed = 5;
 
@@ -14883,31 +14883,31 @@ int main(void) {
 			if ((count_time % 10) == 0){
 				int choose_path = rand()%6;
 				if(choose_path == 0 || choose_path == 1){
-					if(bomb_y_1 > 240){
+					if(bomb_y_1 > 240 && bomb_y_2 > 100){
 						bomb_x_1 = 65; //left bomb
 						bomb_y_1 = 0; //reset to initial value
 					}
-					if(bomb_y_2 > 240){
+					if(bomb_y_2 > 240 && bomb_y_1 > 100){
 						bomb_x_2 = 225;
 						bomb_y_2 = 0; //reset to initial value
 					}
 					
 				}else if(choose_path == 2 || choose_path == 3){
-					if(bomb_y_1 > 240){
+					if(bomb_y_1 > 240 && bomb_y_2 > 100){
 						bomb_x_1 = 145; //center bomb
 						bomb_y_1 = 0; //reset to initial value
 					}
-					if(bomb_y_2 > 240){
+					if(bomb_y_2 > 240 && bomb_y_1 > 100){
 						bomb_x_2 = 65;
 						bomb_y_2 = 0; //reset to initial value
 					}
 
 				}else if(choose_path == 4 || choose_path == 5){
-					if(bomb_y_1 > 240){
+					if(bomb_y_1 > 240 && bomb_y_2 > 100){
 						bomb_x_1 = 225; //right bomb
 						bomb_y_1 = 0; //reset to initial value
 					}
-					if(bomb_y_2 > 240){
+					if(bomb_y_2 > 240 && bomb_y_1 > 100){
 						bomb_x_2 = 145;
 						bomb_y_2 = 0; //reset to initial value
 					}
@@ -14935,7 +14935,7 @@ int main(void) {
 			if((count_drop % 10) == 0){
 				//increment_num += 1;
 				bomb_1_speed += increment_num;
-				bomb_2_speed += increment_num;
+				bomb_2_speed += (increment_num*2);
 			}
 
 			
@@ -14997,11 +14997,11 @@ int main(void) {
 
 
 			//game over situation
-			if(car_x == bomb_x_1 && bomb_y_1 > 140 && bomb_y_1 < 170){
+			if(car_x == bomb_x_1 && bomb_y_1 > 130 && bomb_y_1 < 180){
 
 				break;
 			} 
-			if(car_x == bomb_x_2 && bomb_y_2 == 140 && bomb_y_2 <170){
+			if(car_x == bomb_x_2 && bomb_y_2 > 130 && bomb_y_2 <180){
 				break;
 			}
 
@@ -15052,38 +15052,6 @@ void wait_for_vsync() {
     } 
 } 
 
-// void draw() { 
-//     clear_screen();
-
-//     if(globalY + sizeY >= maxY || globalY + delta < 0) delta *= -1;
-// 	if(globalX + sizeX >= maxX || globalX + delta2 < 0) delta2 *= -1;
-//     globalY += delta;
-// 	globalX += delta2; 
-
-//     draw_line(globalX, globalY, globalX + sizeX, globalY, 0x001F);
-//     draw_line(globalX, globalY, globalX, globalY + sizeY, 0x07E0); 
-//     draw_line(globalX, globalY + sizeY, globalX + sizeX, globalY + sizeY, 0xF800); 
-//     draw_line(globalX + sizeX, globalY, globalX + sizeX, globalY + sizeY, 0xFFFF); 
-//     draw_line(globalX + sizeX, globalY, globalX, globalY + sizeY, 0xF81F); 
-
-// }
-
-// void clear_car() {
-
-
-
-// 	draw_line(globalX, globalY, globalX + sizeX, globalY, 0x0000);
-//     draw_line(globalX, globalY, globalX, globalY + sizeY, 0x0000);
-//     draw_line(globalX, globalY + sizeY, globalX + sizeX, globalY + sizeY, 0x0000);
-//     draw_line(globalX + sizeX, globalY, globalX + sizeX, globalY + sizeY, 0x0000);
-//     draw_line(globalX + sizeX, globalY, globalX, globalY + sizeY, 0x0000);
-    
-//     /*for(int x = 0; x <= maxX; x++) {
-//         for(int y = 0; y <= maxY; y++) {
-//             plot_pixel(x,y, 0x0000); 
-//         }
-//     }*/
-// }
 
 
 void draw_line(int startX, int startY, int endX, int endY, short int line_color) {
