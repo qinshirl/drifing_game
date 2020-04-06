@@ -14708,8 +14708,8 @@ int main(void) {
 
     int count_time = 0;
     int count_drop = 1;
-    int increment_num = 1;
-    int bomb_1_speed = 2;
+    int increment_num = 2;
+    int bomb_1_speed = 3;
     int bomb_2_speed = 5;
 
  //    PS2_data = *(PS2_ptr);	// read the Data register in the PS/2 port
@@ -14771,7 +14771,7 @@ int main(void) {
 			plot_image(bomb_x_2, bomb_y_2, clear_car_pic, 30, 30);
 
 
-			if((count_drop % 50) == 0){
+			if((count_drop % 10) == 0){
 				//increment_num += 1;
 				bomb_1_speed += increment_num;
 				bomb_2_speed += increment_num;
@@ -14782,7 +14782,7 @@ int main(void) {
 			bomb_y_1 += bomb_1_speed; //increment bomb1 y position
 			bomb_y_2 += bomb_2_speed; //increment bomb2 y position
 
-			if(bomb_y_1 == 210){
+			if(bomb_y_1 > 240){
 				count_drop ++;
 			}
 
@@ -14826,7 +14826,7 @@ int main(void) {
 			//clear car image
 			plot_image(car_x, car_y, clear_car_pic, 30, 30); 
 			car_x = car_x + car_move_direction*40;
-			//}
+			
 			
 		
 			byte3 = 0x76;
@@ -14835,12 +14835,12 @@ int main(void) {
 			car_move_direction = 0;
 
 
-			//game over situations
-			if(
-				(car_x == bomb_x_1 && car_y == (bomb_y_1+30)) ||
-				(car_x == bomb_x_2 && car_y == (bomb_y_2+30))
-				){
+			//game over situation
+			if(car_x == bomb_x_1 && bomb_y_1 > 140 && bomb_y_1 < 170){
 
+				break;
+			} 
+			if(car_x == bomb_x_2 && bomb_y_2 == 140 && bomb_y_2 <170){
 				break;
 			}
 
