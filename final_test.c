@@ -15203,14 +15203,13 @@ int main(void) {
 			car_move_direction = 0;
 
 
-
+			//compare if they are the same bomb, prevent extra life point deduction due to set bomb detection range
 			if(prev_bomb_y_1 > bomb_y_1){
 				diff_drop_1 = 1;
 			}
 			if(prev_bomb_y_2 > bomb_y_2){
 				diff_drop_2 = 1;
 			}
-
 
 
 			//game over situation
@@ -15240,15 +15239,11 @@ int main(void) {
 			if(life == 1){
 					plot_image(12, 11, white_pic, 10, 10);
 			}
-			if(life == 0){
-				break;
-			}
+			// if(life == 0){
+			// 	break;
+			// }
 
 
-
-		
-
-			
 			scoreDivider++;
 			if(scoreDivider == 10)
 			{
@@ -15260,8 +15255,14 @@ int main(void) {
 
 
 			//logic for displaying the current score
-			int display_current_one = currentScore%10;
-			int display_current_ten = currentScore/10;
+			int display_current_s = currentScore;
+			if(currentScore > 100){
+				display_current_s = currentScore - (currentScore/100)*100;
+			}
+
+			int display_current_one = display_current_s%10;
+			int display_current_ten = display_current_s/10;
+			int display_current_hund = currentScore/100;
 			
 			//current ones
 			if(display_current_one == 0){
@@ -15328,10 +15329,49 @@ int main(void) {
 				plot_image(300, 35, nine_pic, 10, 10);
 			}
 
+			//current hundreds
+			if(display_current_hund == 0){
+				plot_image(290, 35, zero_pic, 10, 10);
+			}
+			if(display_current_hund == 1){
+				plot_image(290, 35, one_pic, 10, 10);
+			}
+			if(display_current_hund == 2){
+				plot_image(290, 35, two_pic, 10, 10);
+			}
+			if(display_current_hund == 3){
+				plot_image(290, 35, three_pic, 10, 10);
+			}
+			if(display_current_hund == 4){
+				plot_image(290, 35, four_pic, 10, 10);
+			}
+			if(display_current_hund == 5){
+				plot_image(290, 35, five_pic, 10, 10);
+			}
+			if(display_current_hund == 6){
+				plot_image(290, 35, six_pic, 10, 10);
+			}
+			if(display_current_hund == 7){
+				plot_image(290, 35, seven_pic, 10, 10);
+			}
+			if(display_current_hund == 8){
+				plot_image(290, 35, eight_pic, 10, 10);
+			}
+			if(display_current_hund == 9){
+				plot_image(290, 35, nine_pic, 10, 10);
+			}
 
 			//logic for displaying the hight score
-			int display_hightest_one = highestScore%10;
-			int display_highest_ten = highestScore/10;
+
+			int display_highest_s = highestScore;
+			if(display_highest_s > 100){
+				display_highest_s = highestScore - (highestScore/100)*100;
+			}
+
+			
+			int display_hightest_one = display_highest_s%10;
+			int display_highest_ten = display_highest_s/10;
+			int display_highest_hund = highestScore/100;
 
 			//highest ones
 			if(display_hightest_one == 0){
@@ -15398,6 +15438,37 @@ int main(void) {
 				plot_image(300, 12, nine_pic, 10, 10);
 			}
 
+			//highest hundreds
+			if(display_highest_hund == 0){
+				plot_image(290, 12, zero_pic, 10, 10);
+			}
+			if(display_highest_hund == 1){
+				plot_image(290, 12, one_pic, 10, 10);
+			}
+			if(display_highest_hund == 2){
+				plot_image(290, 12, two_pic, 10, 10);
+			}
+			if(display_highest_hund == 3){
+				plot_image(290, 12, three_pic, 10, 10);
+			}
+			if(display_highest_hund == 4){
+				plot_image(290, 12, four_pic, 10, 10);
+			}
+			if(display_highest_hund == 5){
+				plot_image(290, 12, five_pic, 10, 10);
+			}
+			if(display_highest_hund == 6){
+				plot_image(290, 12, six_pic, 10, 10);
+			}
+			if(display_highest_hund == 7){
+				plot_image(290, 12, seven_pic, 10, 10);
+			}
+			if(display_highest_hund == 8){
+				plot_image(290, 12, eight_pic, 10, 10);
+			}
+			if(display_highest_hund == 9){
+				plot_image(290, 12, nine_pic, 10, 10);
+			}
 			// new back buffer
 			pixelBufferStart = *(pixelCtrlPtr + 1); // new back buffer	
 
