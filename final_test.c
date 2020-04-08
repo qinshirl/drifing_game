@@ -15239,9 +15239,9 @@ int main(void) {
 			if(life == 1){
 					plot_image(12, 11, white_pic, 10, 10);
 			}
-			// if(life == 0){
-			// 	break;
-			// }
+			if(life == 0){
+				break;
+			}
 
 
 			scoreDivider++;
